@@ -1,8 +1,11 @@
 import os
 from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = OpenAI(
-    api_key=os.environ["API_KEY"], # api по окружению ставится
+    api_key=os.environ["API_KEY"], # задавать в .env
     base_url="https://foundation-models.api.cloud.ru/v1"
 )
 
