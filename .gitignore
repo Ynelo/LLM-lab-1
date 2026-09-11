@@ -219,3 +219,5 @@ __marimo__/
 
 # Custom
 output
+test_files
+.env
