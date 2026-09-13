@@ -11,6 +11,9 @@ client = OpenAI(
     base_url="https://foundation-models.api.cloud.ru/v1"
 )
 
+with open("prompt.txt", "r", encoding="utf-8") as file:
+    file_content = file.read()
+
 models = [
     "anthropic/claude-sonnet-4.6",
     "anthropic/claude-sonnet-4",
@@ -21,7 +24,10 @@ models = [
 ]
 
 prompts = [
-    "Объясни, что такое промпт-инженерия простыми словами."
+    file_content + "\nОтветь на вопрос. Сколько в среднем житель России проводит в сети?",
+    file_content + "\nОтветь на вопрос. Почему доменная зона .su прекращала регистрацию доменов?",
+    file_content + "\nсКколько доменов зарегестрированное в доменной зоне .nl?"
+
 ]
 
 results = []
@@ -40,7 +46,7 @@ for model in models:
                     }
                 ],
                 temperature=0.3,
-                max_tokens=1200
+                max_tokens=1600
             )
 
             answer = response.choices[0].message.content
@@ -66,7 +72,7 @@ for model in models:
         })
 
 output_dir = os.environ.get("PATH_OUTPUT") # задавать в .env
-full_path = os.path.join(output_dir, "test_result.csv") 
+full_path = os.path.join(output_dir, "result-of-Q&A.csv") 
 
 os.makedirs(output_dir, exist_ok=True)
 df = pd.DataFrame(results)
