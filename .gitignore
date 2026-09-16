@@ -221,4 +221,4 @@ __marimo__/
 output
 test_files
 .env
-prompts.txt
+prompt.txt

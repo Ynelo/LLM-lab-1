@@ -33,6 +33,8 @@ prompts = [
 ]
 
 results = []
+temp = 0.3
+max_tokens = 1600
 
 for model in models:
     for i, prompt in enumerate(prompts, start=1):
@@ -47,8 +49,8 @@ for model in models:
                         "content": prompt
                     }
                 ],
-                temperature=0.3,
-                max_tokens=1600
+                temperature=temp,
+                max_tokens=max_tokens
             )
 
             answer = response.choices[0].message.content
@@ -70,7 +72,9 @@ for model in models:
             "status": status,
             "error": error,
             "latency_sec": round(latency, 2),
-            "answer_length": len(answer)
+            "answer_length": len(answer),
+            "temp": temp,
+            "max_tokens": max_tokens
         })
 
 output_dir = os.environ.get("PATH_OUTPUT") # задавать в .env
