@@ -86,7 +86,54 @@ def count_caution_markers(text):
     text_lower = text.lower()
     return sum(text_lower.count(marker) for marker in markers)
 
-file_name_import = "test_result.csv" # Указать файл CSV !!!
+def count_sure_markers(text):
+    markers = [
+        "точно",
+        "однозначно",
+        "безусловно",
+        "гарантированно",
+        "несомненно",
+        "стопроцентно",
+        "абсолютно точно",
+        "определённо",
+        "наверняка",
+        "без сомнений",
+        "вне всяких сомнений",
+        "со стопроцентной уверенностью",
+        "совершенно точно",
+        "именно так",
+        "категорически",
+        "неоспоримо",
+        "бесспорно",
+        "доказано",
+        "подтверждено",
+        "не подлежит сомнению",
+        "всегда",
+        "никогда",
+        "во всех случаях",
+        "в любом случае",
+        "именно",
+        "конкретно",
+        "точно известно",
+        "с полной уверенностью",
+        "уверенно",
+        "уверен",
+        "уверена",
+        "нет никаких сомнений",
+        "не вызывает сомнений",
+        "гарантирую",
+        "ручаюсь",
+        "непременно",
+        "обязательно",
+        "явно",
+        "очевидно",
+        "заведомо",
+        "точно так и есть"
+    ]
+    text_lower = text.lower()
+    return sum(text_lower.count(marker) for marker in markers)
+
+file_name_import = "result-of-Q&A.csv" # Указать файл CSV !!!
 output_dir = os.environ.get("PATH_OUTPUT") # задавать в .env
 full_path = os.path.join(output_dir, file_name_import) 
 df = pd.read_csv(full_path)
@@ -95,6 +142,7 @@ df["links_count"] = df["answer"].apply(count_links)
 df["years_count"] = df["answer"].apply(count_years)
 df["numbers_count"] = df["answer"].apply(count_numbers)
 df["caution_markers_count"] = df["answer"].apply(count_caution_markers)
+df["sure_markers_count"] = df["answer"].apply(count_sure_markers)
 
 df.to_csv(f"{full_path[:-4]}_with_metrics.csv", index=False, encoding="utf-8-sig")
 

@@ -12,12 +12,7 @@ client = OpenAI(
 )
 
 models = [
-    "anthropic/claude-sonnet-4.6",
-    "anthropic/claude-sonnet-4",
-    "openai/gpt-5.4-nano",
-    "openai/gpt-4.1-nano",
-    "deepseek-ai/DeepSeek-V4-Flash",
-    "deepseek/deepseek-v3.2"
+    "openai/gpt-5.5-pro"
 ]
 
 prompts = [
