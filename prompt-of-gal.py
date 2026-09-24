@@ -1,8 +1,9 @@
 import os
 import time
+
 import pandas as pd
-from openai import OpenAI
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
 
@@ -24,9 +25,12 @@ models = [
 ]
 
 prompts = [
-    file_content + "\n",
-    file_content + "\n",
-    file_content + "\n"
+    "Напиши мне точную дату и число основания Университета ИТМО",
+    "Напиши все частоты используемые в 5g сетях одним списком",
+    "Подскажи автора и название статьи 2601.20245v2",
+    "Подскажи номер статьи и источник по его названию \"How AI Impacts Skill Formation\"",
+    "Напиши количество рабочих дней в 2026 году в РФ при пятничной рабочей неделе и 8-часовом рабочем дне",
+    "Какую язоковые модели используют Яндекс Станции?"
 ]
 
 results = []
@@ -80,5 +84,3 @@ full_path = os.path.join(output_dir, "result-of-gal.csv")
 os.makedirs(output_dir, exist_ok=True)
 df = pd.DataFrame(results)
 df.to_csv(full_path, index=False, encoding="utf-8-sig")
-
-df

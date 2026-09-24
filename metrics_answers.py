@@ -133,7 +133,7 @@ def count_sure_markers(text):
     text_lower = text.lower()
     return sum(text_lower.count(marker) for marker in markers)
 
-file_name_import = "result-of-Q&A.csv" # Указать файл CSV !!!
+file_name_import = "result-of-gal.csv" # Указать файл CSV !!!
 output_dir = os.environ.get("PATH_OUTPUT") # задавать в .env
 full_path = os.path.join(output_dir, file_name_import) 
 df = pd.read_csv(full_path)
